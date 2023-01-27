@@ -11,4 +11,3 @@ public struct NamedEntity: Identifiable {
 public typealias Prize = NamedEntity
 
 public typealias Participant = NamedEntity
-

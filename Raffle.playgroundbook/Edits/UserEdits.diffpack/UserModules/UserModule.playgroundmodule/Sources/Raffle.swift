@@ -4,14 +4,13 @@ public struct Raffle {
     let participants: [Participant]
     
     public let results: [Raffle.Result]    
-    public let resultDescription: String
+    public var resultDescription: String { self.results.description }
     
     public init(prizeNames: [String], participantNames: [String]) {
         self.prizes = prizeNames.map { name in Prize(name) }
         self.participants = participantNames.map { name in Participant(name) }
         
         self.results = Raffle.perform(prizes: self.prizes, participants: self.participants)
-        self.resultDescription = Raffle.describe(results: self.results)
     }
     
     // This is a raffle where each participant can win only one resource.
@@ -37,11 +36,7 @@ public struct Raffle {
         
         return results
     }
-    
-    fileprivate static func describe(results: [Result]) -> String {
-        return "RESULTS\n-------\n" + results.map { $0.description }.joined(separator: "\n")
-    }
-    
+
     public struct Result {
         public let participant: Participant?
         public let prize: Prize?
@@ -60,12 +55,20 @@ public struct Raffle {
         public init(losingParticipant: Participant) {
             self.init(participant: losingParticipant, prize: nil)
         }
-        
+
         fileprivate static func describeResult(participant: Participant?, prize: Prize?) -> String {
             let participantName = participant?.name ?? "Nobody"
             let prizeName = prize?.name ?? "Nothing"
             
             return "\(participantName) won \(prizeName)"
         }
+    }
+}
+
+extension Array where Element == Raffle.Result {
+    public var description: String {
+        return (["RESULTS", "-------"]
+                    + self.map { $0.description })
+            .joined(separator: "\n")
     }
 }
