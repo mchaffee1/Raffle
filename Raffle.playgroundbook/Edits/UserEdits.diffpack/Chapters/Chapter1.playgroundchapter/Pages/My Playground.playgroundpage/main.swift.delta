@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import UserModule
+
+/*
+ I threw this together when I had four gifts to distribute to nine friends.  
+ At the time I was also missing Swift, hence, Swift.  
+ Due to the nature of the gifts in question, nobody should receive more than one.
+ */
+
+// I was today years old when I learned there was a Marx brother named Gummo
+let participantNames = [
+    "Mo", "Larry", "Curly", "Shemp",
+    "Groucho", "Harpo", "Zeppo", "Chico", "Gummo"
+]
+let prizeNames = [Array(1...3).map { "Cool Prize \($0)" },
+                  Array(1...3).map { "Less-cool Prize \($0)" }]
+    .flatMap { $0 }
+
+let raffle = Raffle(prizeNames: prizeNames, participantNames: participantNames)
+
+print(raffle.resultDescription)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 690}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
