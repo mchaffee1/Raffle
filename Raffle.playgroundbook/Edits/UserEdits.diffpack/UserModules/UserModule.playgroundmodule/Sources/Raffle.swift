@@ -26,13 +26,13 @@ public struct Raffle {
             remainingParticipants.shuffle()
             
             guard let winner = remainingParticipants.popLast() else {
-                results.append(Result(participant: nil, prize: prize))
+                results.append(Result(unclaimedPrize: prize))
                 return
             }
             results.append(Result(participant: winner, prize: prize))
         }
         results.append(contentsOf: remainingParticipants.map { losingParticipant in
-            Result(participant: losingParticipant, prize: nil) 
+            Result(losingParticipant: losingParticipant)
         })
         
         return results
@@ -51,6 +51,14 @@ public struct Raffle {
             self.participant = participant
             self.prize = prize
             self.description = Result.describeResult(participant: participant, prize: prize) 
+        }
+
+        public init(unclaimedPrize: Prize) {
+            self.init(participant: nil, prize: unclaimedPrize)
+        }
+
+        public init(losingParticipant: Participant) {
+            self.init(participant: losingParticipant, prize: nil)
         }
         
         fileprivate static func describeResult(participant: Participant?, prize: Prize?) -> String {
